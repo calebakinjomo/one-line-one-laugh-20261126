@@ -24,6 +24,9 @@ if (ENTRY.length > 140) {
 if (ENTRY.includes("\n") || ENTRY.includes("\r")) {
   throw new Error("entry line must be a single line");
 }
+if (ENTRY !== ENTRY.trim() || !/[.!?]$/.test(ENTRY)) {
+  throw new Error("entry line must be a single trimmed sentence ending in punctuation");
+}
 
 const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
 mkdirSync(outputDir, { recursive: true });
